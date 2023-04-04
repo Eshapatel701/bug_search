@@ -29,8 +29,9 @@ app.config['SECRET_KEY'] = '142857'
 def login_home():
     return render_template('login_home.html')
 
-@app.route('/home')
-def home():
+@app.route('/<int:user_id>/home')
+def home(user_id):
+    user = get_user(user_id,None)
     return render_template('user_home.html')
 
 @app.route('/signup', methods=('GET', 'POST'))
@@ -53,9 +54,11 @@ def signup():
             cur = conn.cursor()
             cur.execute('INSERT INTO Users (email_id, username, passcode) VALUES (%s, %s, %s)',
                             (email_id, username, passcode))
+            cur.execute('SELECT LAST_INSERT_ID()')
+            user_id = cur.fetchone()[0]
             conn.commit()
             conn.close()
-            return redirect(url_for('home'))
+            return redirect(url_for('home',user_id=user_id))
     return render_template('signup.html')
         
 
