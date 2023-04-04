@@ -20,16 +20,25 @@
           <div class="sign-up-page-sign-up-page">
             <div class="sign-up-page-group233">
               <div class="sign-up-page-group223">
-                <div class="sign-up-page-group222">
+                <div class="sign-up-page-alert">
                   <!-- <span class="sign-up-page-text"><span>Login</span></span> -->
-                  <button type="button" class="btn btn-primary sign-up-page-rectangle79 sign-up-page-text ">Login</button>
-                  <button type="button" class="btn btn-primary sign-up-page-rectangle79 sign-up-page-text02 ">Register</button>
+                  <!-- <button type="button" class="btn btn-primary sign-up-page-rectangle79 sign-up-page-text ">Login</button> -->
+                  <!-- <button type="button" class="btn btn-primary sign-up-page-rectangle79 sign-up-page-text02 ">Register</button> -->
                   <!-- <span class="sign-up-page-text02"><span>Register</span></span> -->
-                </div>
+                
+                <div class="container">
+                  {% for message in get_flashed_messages() %} 
+                      <div class="alert alert-danger">{{ message }}</div>
+                  {% endfor %} 
+                  {% block content %} {% endblock %}
+              </div>
+            </div>
                 <span class="sign-up-page-text04">
                   <span>Welcome to BugSearch!</span>
                 </span>
               </div>
+              
+            <hr>
               <form method="post">
               <div class="sign-up-page-group225">
                 <rect class="sign-up-page-rectangle80"></rect>
@@ -158,6 +167,7 @@
                 </div>
               </div>
             </nav>
+            
           </div>
           </div>
             <!-- <div class="sign-up-page-group427319013">
