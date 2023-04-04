@@ -118,5 +118,3 @@ CREATE TABLE Questiontags
     FOREIGN KEY (tag_id) REFERENCES Tags(tag_id),
     FOREIGN KEY (question_id) REFERENCES Questions(question_id)
 );
-
-
