@@ -142,6 +142,25 @@
     justify-content: flex-start;
     background-color: rgba(73, 187, 189, 0.6000000238418579);
   }
+  .sign-up-page-alert {
+    top: 47.591796875px;
+    left: 0px;
+    width: 453.0367736816406px;
+    height: 66.85528564453125px;
+    display: flex;
+    padding: 0;
+    position: absolute;
+    align-self: auto;
+    box-sizing: border-box;
+    align-items: flex-start;
+    flex-shrink: 1;
+    border-color: transparent;
+    border-style: none;
+    border-width: 0;
+    border-radius: 15px;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
   .sign-up-page-text {
     top: 22.1953125px;
     left: 99.1450424194336px;
