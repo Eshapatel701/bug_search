@@ -1,415 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- @login_required -->
 <head>
-    <meta charset="UTF-8">  
-    <!-- Characters that are used will be of UTF-8 -->
-    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Makes your website responsive and adjusts its width in such a way that it looks good in both PC or mobile.  -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- It helps any particular website to open in the highest compatibility mode available. It is mostly for those who are still using Internet Explorer. Because there are still some people who have not upgraded their system and are still using the older versions.  -->
-    <meta name="description" content="This is description">
-    <!-- To add a description, we have to write the above statement and write your own description in the content part. -->
-    <meta name="keywords" content="html, html tutorials, web development">
-    <!-- Keywords are those special words through which a user reach any website. You can add the keywords in the content part of the tag. -->
-    <meta name="robots" content="INDEX, FOLLOW">
-    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <!-- If we want our website to be indexed in Google or other search engines and bots should follow all the links present on the website. If we write NOINDEX, NOFOLLOW then any search engine will not follow our website. -->
-    <script src="https://kit.fontawesome.com/0e3a433eeb.js" crossorigin="anonymous"></script>
-    <link href="../static/posted_questions.css" rel="stylesheet" />
-    <!-- Used to link css file -->
-    <!-- <script src="tut_1.js"></script> -->
-    <!-- Used to link js file -->
-    <title>CSS Tutorial</title>
-    <!-- <style>
-        p{
-            color:rgb(156, 255, 222);
-            background-color: rgb(170, 165, 165)
-        }
-    </style> -->
-    <!-- Between Internal and External CSS, higher precedence is given to the one which is written later i.e. below in the code -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Ubuntu:wght@700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for ('static',filename='assets/images/logo.png') }}" alt="image">
+    <title>BugSearch</title>
+
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-scholar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/our_c.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/side.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/q_format.css') }}">
+
 </head>
-    <div>
-      <div class="posted-questions-posted-questions">
-        <div class="posted-questions-group427319019">
-          <div class="posted-questions-group427319019">
-            <!-- <div class="posted-questions-group427319019"> -->
-              <div class="container-fluid">
-                <div class="posted-questions-group427319017 ">
-                <nav class="navbar navbar-expand-lg navcolor navbar-dark cont">
-                  <div class="container-fluid">
-                      <img class = "logo" src = "https://www.figma.com/file/7KFxGA0vLIeYhf85DahLUR/image/b9c586039aa60204d819a86debfa978b37fbf6fd">
-                      <a class="navbar-brand" href="#">BugSearch</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <form class="d-flex search" role="search">
-                          <input class="form-control me-2 searchbar" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success search_btn" type="submit">Search</button>
-                        </form>
-                        <li class="nav-item badges-vector">
-                          <i class="fa-solid fa-user fa-2x user_icon_nav "></i>
-                        </li>
-                        <li class="nav-item username">
-                          <a class="nav-link-active userfont" aria-current="page" href="#">Username</a>
-                        </li>
-                        <li class="nav-item logout">
-                          <a class="nav-link active" aria-current="page" href="#">Logout</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link active" aria-current="page" href="#">Help</a>
-                        </li>
-                      </ul>
-                      
-                    </div>
-                  </div>
-                </nav>
+</head>
+<body>
+<div class="wrapper">
+    <nav id="sidebar" class="sticky-top">
+    <div class="sidebar-header">
+        <hr>
+    </div>
+    <ul class="list-unstyled components navbar-nav mr-auto">
+        <p>{{current_user.username}}</p>
+        <li> <a href="{{url_for('dashboard')}}" class="dis-inl" ><i class="fa-solid fa-user trending-user-circle dis-inl mar" style="color:black"></i>User Profile</a></li>
+        <li> <a href="{{url_for('user_home')}}" class="dis-inl"><i class="fa-solid fa-house followers-page-identification-cardd dis-inl mar" style="color:black"></i>User Home</a> </li>
+        <li> <a href="{{url_for('complete_your_profile')}}" class="dis-inl"><i class="fa-solid fa-pen-to-square followers-page-vector2 dis-inl mar" style="color:black"></i>Edit Profile</a> </li>
+        <li> <a href="{{url_for('followers')}}" class="dis-inl"><i class="fa-solid fa-user-group followers-page-users dis-inl mar" style="color:black"></i>Followers</a> </li>
+        <li> <a href="{{url_for('following')}}" class="dis-inl"><i class="fa-solid fa-user-group followers-page-users dis-inl mar" style="color:black"></i>Following</a> </li>
+        
+        <li> <a href="{{url_for('trending')}}" class="dis-inl"><i class="fa-solid fa-globe recommendations-globe-stand dis-inl mar" style="color:black"></i>Trending</a> </li>
+        <li> <a href="{{url_for('recommendations')}}" class="dis-inl"><i class="fa-solid fa-wand-magic-sparkles trending-magic-wand dis-inl mar" style="color:black"></i>Recommendations</a> </li>
+        <li> <a href="{{url_for('all_users')}}" class="dis-inl"><i class="fa fa-users followers-page-users-threed1 dis-inl mar" style="color:black"></i>All Users</a> </li>
+        <li> <a href="{{url_for('bookmarks')}}" class="dis-inl"><i class="fa-solid fa-bookmark trending-bookmarks dis-inl mar" style="color:black"></i>Bookmarks</a> </li>
+        <li> <a href="{{url_for('post_question')}}" class="dis-inl"><i class="fa-solid fa-question trending-question dis-inl mar" style="color:black"></i>Post Question</a> </li>
+        <li> <a href="{{url_for('posted_questions')}}" class="dis-inl" style="background-color : #49BBBD"><i class="fa-solid fa-question trending-question dis-inl mar" style="color:black"></i>Posted Questions</a> </li>
+
+</nav>
+    <div class="content">
+        <header class="header-area header-sticky background-header fixed-topp">
+            <nav class="main-nav navcolor navbar-dark">
+             <button type="button" id="sidebarCollapse" class="btn btn-info info"> <i class="fa fa-align-justify"></i> </button> 
+             <a href="{{url_for('homepage')}}" class="logo">
+                <h1 id="title">BugSearch</h1>
+            </a>
+             <div class="search-input">
+                <form id="search" action="#">
+                  <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                  <i class="fa fa-search"></i>
+                </form>
               </div>
-              </div>
-          <!-- <div class="posted-questions-group427319016">
-            <span class="posted-questions-text"><span>Home</span></span>
-            <img
-              src="/playground_assets/searchbar1862-2nza9.svg"
-              alt="SearchBar1862"
-              class="posted-questions-search-bar"
-            />
-            <div class="posted-questions-group455">
-              <div class="posted-questions-group229">
-                <span class="posted-questions-text02">
-                  <span>
-                    <span>LOGOUT</span>
-                    <br />
-                    <span></span>
-                  </span>
-                </span>
-              </div>
-            </div>
-            <span class="posted-questions-text07"><span>Help</span></span>
-            <img
-              src="https://www.figma.com/file/7KFxGA0vLIeYhf85DahLUR/image/b9c586039aa60204d819a86debfa978b37fbf6fd"
-              alt="Untitleddesign511862"
-              class="posted-questions-untitleddesign51"
-            />
-            <span class="posted-questions-text09"><span>BugSearch</span></span>
-          </div> -->
-          <!-- <div class="posted-questions-group427319018">
-            <img
-              src="/playground_assets/vector1862-oa4q.svg"
-              alt="Vector1862"
-              class="posted-questions-vector"
-            />
-            <span class="posted-questions-text11"><span>Username</span></span>
+            <ul class="nav"> 
+              <li class="scroll-to-section"><a href="{{url_for('user_home')}}">Home</a></li>
+              <li class="scroll-to-section"><a href="{{url_for('dashboard')}}">{{current_user.username}}</a></li>
+              <li class="scroll-to-section"><a href="{{url_for('logout')}}">Logout</a></li>
+              <li class="scroll-to-section"><a href="{{url_for('help_with_login')}}">Help</a></li>
+            </ul>   
+              <a class='menu-trigger'>
+                  <span>Menu</span>
+              </a> 
+
+        </nav>
+    </header>
+
+    <div class="section events" id="events">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <!-- <h6>Schedule</h6> -->
+            <h2>Posted Questions</h2>
           </div>
-        </div> -->
-        <span class="posted-questions-text13"><span>Posted Questions</span></span>
-        <button type="button" class="btn btn-primary posted-questions-rectangle"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-1r4p-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle"
-        /> -->
-        <button type="button" class="btn btn-primary posted-questions-rectangle1"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-xxt-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle1"
-        /> -->
-        <button type="button" class="btn btn-primary posted-questions-rectangle2"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-7qb-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle2"
-        /> -->
-        <button type="button" class="btn btn-primary posted-questions-rectangle3"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-8ecd-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle3"
-        /> -->
-        <button type="button" class="btn btn-primary posted-questions-rectangle4"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-gino-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle4"
-        /> -->
-        <button type="button" class="btn btn-primary posted-questions-rectangle5"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-zlwl-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle5"
-        /> -->
-        <button type="button" class="btn btn-primary posted-questions-rectangle6"></button>
-        <!-- <img
-          src="/playground_assets/rectangle1862-eoac-200h.png"
-          alt="Rectangle1862"
-          class="posted-questions-rectangle6"
-        /> -->
-        <span><button type="button" class="btn btn-primary posted-questions-text15">DELETE</button></span>
-        <span><button type="button" class="btn btn-primary posted-questions-text17">DELETE</button></span>
-        <span><button type="button" class="btn btn-primary posted-questions-text19">DELETE</button></span>
-        <span><button type="button" class="btn btn-primary posted-questions-text21">DELETE</button></span>
-        <span><button type="button" class="btn btn-primary posted-questions-text23">DELETE</button></span>
-        <span><button type="button" class="btn btn-primary posted-questions-text25">DELETE</button></span>
-        <span><button type="button" class="btn btn-primary posted-questions-text27">DELETE</button></span>
-        <!-- <span class="posted-questions-text15"><span>DELETE</span></span>
-        <span class="posted-questions-text17"><span>DELETE</span></span>
-        <span class="posted-questions-text19"><span>DELETE</span></span>
-        <span class="posted-questions-text21"><span>DELETE</span></span>
-        <span class="posted-questions-text23"><span>DELETE</span></span>
-        <span class="posted-questions-text25"><span>DELETE</span></span>
-        <span class="posted-questions-text27"><span>DELETE</span></span> -->
-        <div class="posted-questions-sidebar-a">
-          <div class="posted-questions-note-pencil"></div>
-          <div class="posted-questions-group427318966">
-            <a class="posted-questions-text29 sidehover" href="#">User Profile</a>
-            <i class="fa-solid fa-user posted-questions-identification-badged"></i>
-            <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights"></i>
-          </div>
-          <div class="posted-questions-group427318973">
-            <i class="fa-solid fa-house posted-questions-identification-cardd"></i>
-            <div class="posted-questions-group427318967">
-              <a class="posted-questions-text31 sidehover" href="#">User Home</a>
-              <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights01"></i>
-            </div>
-          </div>
-          <div class="posted-questions-group427318974">
-            <i class="fa-solid fa-users-line posted-questions-users-threed"></i>
-            <div class="posted-questions-group427318968">
-              <a class="posted-questions-text33 sidehover" href="#">Followers</a>
-              <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights02"></i>
-            </div>
-          </div>
-          <div class="posted-questions-group427318975">
-            <i class="fa-solid fa-award posted-questions-vector1"></i>
-            <div class="posted-questions-group427318969">
-              <a class="posted-questions-text35 sidehover" href="#">Badges</a>
-              <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights03"></i>
-            </div>
-          </div>
-          <div class="posted-questions-group427319041">
-            <i class="fa-solid fa-pen-to-square posted-questions-vector2"></i>
-            <a class="posted-questions-text37 sidehover" href="#">Edit Profile</a>
-            <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights04"></i>
-          </div>
-          <div class="posted-questions-group427319042">
-            <a class="posted-questions-text39 sidehover" href="#">Posted Questions</a>
-            <i class="fa-solid fa-question posted-questions-seal-question"></i>
-            <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights05"></i>
-          </div>
-          <div class="posted-questions-group427318984">
-            <a class="posted-questions-text41 sidehover" href="#">Following</a>
-            <i class="fa-solid fa-user-group posted-questions-users"></i>
-            <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights06"></i>
-          </div>
-          <div class="posted-questions-group427319040">
-            <a class="posted-questions-text43 sidehover" href="#">Posted Answers</a>
-            <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights07"></i>
-            <i class="fa-solid fa-lightbulb posted-questions-vector3"></i>
-          </div>
-          <div class="posted-questions-group427319044">
-            <a class="posted-questions-text45 sidehover" href="#">Posted questions</a>
-            <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights08"></i>
-            <i class="fa-solid fa-comment posted-questions-chats-circle"></i>
-          </div>
-          <div class="posted-questions-group4273189741">
-            <i class="fa fa-users posted-questions-users-threed1"></i>
-            <div class="posted-questions-group4273189681">
-              <a class="posted-questions-text47 sidehover" href="#">All Users</a>
-              <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights09"></i>
-            </div>
-          </div>
-          <div class="posted-questions-group427319043">
-            <i class="fa-solid fa-bookmark posted-questions-bookmarks"></i>
-            <div class="posted-questions-group4273189682">
-              <a class="posted-questions-text49 sidehover" href="#">Bookmarks</a>
-              <i class="fa-solid fa-angle-right posted-questions-arrow-line-rights10"></i>
-            </div>
-          </div>
-          <div class="posted-questions-profilename">
-            <i class="fa-solid fa-user fa-2x user_icon posted-questions-vector4"></i>
-            <a class="posted-questions-text51 sidehover" href="#">Username</a>
-          </div>
-          <span class="posted-questions-text53"><span>BugSearch</span></span>
-        </div> 
-        <!-- <div class="posted-questions-sidebar-a">
-          <div class="posted-questions-note-pencil"></div>
-          <div class="posted-questions-group427318966">
-            <span class="posted-questions-text29"><span>User Profile</span></span>
-            <img
-              src="/playground_assets/identificationbadged1862-bxtj.svg"
-              alt="IdentificationBadged1862"
-              class="posted-questions-identification-badged"
-            />
-            <img
-              src="/playground_assets/arrowlinerights1862-u9q9.svg"
-              alt="ArrowLineRights1862"
-              class="posted-questions-arrow-line-rights"
-            />
-          </div>
-          <div class="posted-questions-group427318973">
-            <img
-              src="/playground_assets/identificationcardd1862-5thi.svg"
-              alt="IdentificationCardd1862"
-              class="posted-questions-identification-cardd"
-            />
-            <div class="posted-questions-group427318967">
-              <span class="posted-questions-text31"><span>User Home</span></span>
-              <img
-                src="/playground_assets/arrowlinerights1862-f3s8.svg"
-                alt="ArrowLineRights1862"
-                class="posted-questions-arrow-line-rights01"
-              />
-            </div>
-          </div>
-          <div class="posted-questions-group427318974">
-            <img
-              src="/playground_assets/usersthreed1862-eo6t.svg"
-              alt="UsersThreed1862"
-              class="posted-questions-users-threed"
-            />
-            <div class="posted-questions-group427318968">
-              <span class="posted-questions-text33"><span>Followers</span></span>
-              <img
-                src="/playground_assets/arrowlinerights1862-zw5b.svg"
-                alt="ArrowLineRights1862"
-                class="posted-questions-arrow-line-rights02"
-              />
-            </div>
-          </div>
-          <div class="posted-questions-group427318975">
-            <img
-              src="/playground_assets/vector1862-tab7.svg"
-              alt="Vector1862"
-              class="posted-questions-vector1"
-            />
-            <div class="posted-questions-group427318969">
-              <span class="posted-questions-text35"><span>Badges</span></span>
-              <img
-                src="/playground_assets/arrowlinerights1862-e2ri.svg"
-                alt="ArrowLineRights1862"
-                class="posted-questions-arrow-line-rights03"
-              />
-            </div>
-          </div>
-          <div class="posted-questions-group427319041">
-            <img
-              src="/playground_assets/vector1862-shax.svg"
-              alt="Vector1862"
-              class="posted-questions-vector2"
-            />
-            <span class="posted-questions-text37"><span>Edit Profile</span></span>
-            <img
-              src="/playground_assets/arrowlinerights1862-7ri.svg"
-              alt="ArrowLineRights1862"
-              class="posted-questions-arrow-line-rights04"
-            />
-          </div>
-          <div class="posted-questions-group427319042">
-            <span class="posted-questions-text39">
-              <span>Posted Questions</span>
-            </span>
-            <img
-              src="/playground_assets/sealquestion1862-daig.svg"
-              alt="SealQuestion1862"
-              class="posted-questions-seal-question"
-            />
-            <img
-              src="/playground_assets/arrowlinerights1862-89kn.svg"
-              alt="ArrowLineRights1862"
-              class="posted-questions-arrow-line-rights05"
-            />
-          </div>
-          <div class="posted-questions-group427318984">
-            <span class="posted-questions-text41"><span>Following</span></span>
-            <img
-              src="/playground_assets/arrowlinerights1862-xczn.svg"
-              alt="ArrowLineRights1862"
-              class="posted-questions-arrow-line-rights06"
-            />
-            <img
-              src="/playground_assets/users1862-95cn.svg"
-              alt="Users1862"
-              class="posted-questions-users"
-            />
-          </div>
-          <div class="posted-questions-group427319040">
-            <span class="posted-questions-text43">
-              <span>Posted Answers</span>
-            </span>
-            <img
-              src="/playground_assets/arrowlinerights1862-y3x7.svg"
-              alt="ArrowLineRights1862"
-              class="posted-questions-arrow-line-rights07"
-            />
-            <img
-              src="/playground_assets/vector1862-852f.svg"
-              alt="Vector1862"
-              class="posted-questions-vector3"
-            />
-          </div>
-          <div class="posted-questions-group427319044">
-            <span class="posted-questions-text45">
-              <span>Posted questions</span>
-            </span>
-            <img
-              src="/playground_assets/arrowlinerights1862-lghc.svg"
-              alt="ArrowLineRights1862"
-              class="posted-questions-arrow-line-rights08"
-            />
-            <img
-              src="/playground_assets/chatscircle1862-4wy.svg"
-              alt="ChatsCircle1862"
-              class="posted-questions-chats-circle"
-            />
-          </div>
-          <div class="posted-questions-group4273189741">
-            <img
-              src="/playground_assets/usersthreed1862-gc2m.svg"
-              alt="UsersThreed1862"
-              class="posted-questions-users-threed1"
-            />
-            <div class="posted-questions-group4273189681">
-              <span class="posted-questions-text47"><span>All Users</span></span>
-              <img
-                src="/playground_assets/arrowlinerights1862-acm.svg"
-                alt="ArrowLineRights1862"
-                class="posted-questions-arrow-line-rights09"
-              />
-            </div>
-          </div>
-          <div class="posted-questions-group427319043">
-            <img
-              src="/playground_assets/bookmarks1862-2sx.svg"
-              alt="Bookmarks1862"
-              class="posted-questions-bookmarks"
-            />
-            <div class="posted-questions-group4273189682">
-              <span class="posted-questions-text49"><span>Bookmarks</span></span>
-              <img
-                src="/playground_assets/arrowlinerights1862-vc5m.svg"
-                alt="ArrowLineRights1862"
-                class="posted-questions-arrow-line-rights10"
-              />
-            </div>
-          </div>
-          <div class="posted-questions-profilename">
-            <img
-              src="/playground_assets/vectori186-o3dd.svg"
-              alt="VectorI186"
-              class="posted-questions-vector4"
-            />
-            <span class="posted-questions-text51"><span>Username</span></span>
-          </div>
-          <span class="posted-questions-text53"><span>BugSearch</span></span>
         </div>
-      </div> -->
+        {% for q in q_list%}
+          <div class="col-lg-12 col-md-6 hz">
+          <div class="item sel">
+            <div class="row">
+              <div class="col-lg-12">
+                <ul>
+                  <li>
+                    <h4>{{q.title}}</h4>
+                    <br>
+                    <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.score}} Votes<!--</button>--></span>
+                    <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.answer_count}} Answers<!--/button--></span>
+                    <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.comment_count}} Comments<!--/button--></span>
+                    
+
+                  </li>
+                </ul>
+                <a href="{{url_for('find_question',question_id=q.question_id)}}"><i class="fa fa-angle-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        </div>
+        
+
+      </div>
     </div>
   </div>
+
+        <div class="content-wrapper">
+<!--             <div class="line"></div> -->
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/isotope.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/counter.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/our.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='assets/css/our.js') }}"></script> -->
+
+
 </body>
 </html>

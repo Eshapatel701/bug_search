@@ -1,102 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">  
-    <meta name ="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="This is description">
-    <meta name="keywords" content="html, html tutorials, web development">
-    <meta name="robots" content="INDEX, FOLLOW">
+<!-- @login_required not necessary-->
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Ubuntu:wght@700&display=swap" rel="stylesheet">    
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/0e3a433eeb.js" crossorigin="anonymous"></script>
-    <link href="../static/tag.css" rel="stylesheet" />
-    <title>CSS Tutorial</title>
-</head>
+
+
+    <title>BugSearch</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-scholar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/our_c.css') }}">
+    
+
+<!--
+
+TemplateMo 586 Scholar
+
+https://templatemo.com/tm-586-scholar
+
+-->
+  </head>
+
 <body>
-    <div>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:ital,wght@0,600;1,400&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-          
-        <div>
-          <div class="tag-tag">
-            <div class="tag-group427318998"><div class="tag-status"></div></div>
-            <span class="tag-text"><span>Tag-Name</span></span>
-            <span class="tag-text02"><span>Tag-Description</span></span>
-            <img
-              src="https://www.figma.com/file/7KFxGA0vLIeYhf85DahLUR/image/610d5419cc577a971b47d57aa35af93a48457fe0"
-              alt="tag11633"
-              class="tag-tag1"
-            />
-            <nav class="navbar navbar-expand-lg navcolor navbar-dark cont">
-              <div class="container-fluid">
-                  <img class = "logo" src = "https://www.figma.com/file/7KFxGA0vLIeYhf85DahLUR/image/b9c586039aa60204d819a86debfa978b37fbf6fd">
-                  <a class="navbar-brand" href="#">BugSearch</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky background-header fixed-topp">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav navcolor navbar-dark">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <h1 id="title">BugSearch</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <!-- <li class="scroll-to-section"><a href="#top" class="active">Home</a></li> -->
+                      <!-- <li class="scroll-to-section"><a href="#services">Login</a></li> -->
+                      <li class="scroll-to-section"><a href="{{url_for('homepage')}}">Home</a></li>
+                      <li class="scroll-to-section"><a href="{{url_for('userlogin')}}">Login</a></li>
+                      <li class="scroll-to-section"><a href="{{url_for('signup')}}">Sign Up</a></li>
+                      <li class="scroll-to-section"><a href="{{url_for('help')}}">Help</a></li>
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** --> 
+  <div class="section about-us abus">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+          <div class="accordion eg" id="accordionExample">
+            <div class="accordion-item">
+                <img class="tagi" src="https://www.figma.com/file/7KFxGA0vLIeYhf85DahLUR/image/610d5419cc577a971b47d57aa35af93a48457fe0">
+              <!-- <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Where shall we begin?
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <form class="d-flex search" role="search">
-                      <input class="form-control me-2 searchbar" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success search_btn" type="submit">Search</button>
-                    </form>
-                    <!-- <li class="nav-item badges-vector">
-                      <i class="fa-solid fa-user fa-2x user_icon_nav "></i>
-                    </li> -->
-                    <!-- <li class="nav-item username">
-                      <a class="nav-link-active userfont" aria-current="page" href="#">Username</a>
-                    </li> -->
-                    <li class="nav-item signup">
-                      <a class="nav-link active" aria-current="page" href="#">SignUp</a>
-                    </li>
-                    <li class="nav-item logout">
-                      <a class="nav-link active" aria-current="page" href="#">Login</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Help</a>
-                    </li>
-                  </ul>       
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                </div>
+              </div> -->
+            </div>
+            <!-- <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  How do we work together?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
                 </div>
               </div>
-            </nav>
-          </div>
-          </div>
-            <!-- <div class="tag-group427319014">
-              <span class="tag-text04"><span>Home</span></span>
-              <img
-                src="/playground_assets/searchbar1633-ze7.svg"
-                alt="SearchBar1633"
-                class="tag-search-bar"
-              />
-              <div class="tag-group454">
-                <div class="tag-group456">
-                  <div class="tag-group229">
-                    <span class="tag-text06"><span>LOGIN</span></span>
-                  </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Why SCHOLAR is the best?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  There are more than one hundred responsive HTML templates to choose from <strong>Template</strong>Mo website. You can browse by different tags or categories.
                 </div>
               </div>
-              <div class="tag-group455">
-                <div class="tag-group2291">
-                  <span class="tag-text08"><span>SIGNUP</span></span>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  Do we get the best support?
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  You can also search on Google with specific keywords such as <code>templatemo business templates, templatemo gallery templates, admin dashboard templatemo, 3-column templatemo, etc.</code>
                 </div>
               </div>
-              <span class="tag-text10"><span>Help</span></span>
-              <img
-                src="https://www.figma.com/file/7KFxGA0vLIeYhf85DahLUR/image/b9c586039aa60204d819a86debfa978b37fbf6fd"
-                alt="Untitleddesign511633"
-                class="tag-untitleddesign51"
-              />
-              <span class="tag-text12"><span>BugSearch</span></span>
             </div> -->
           </div>
         </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <!-- <h6>About Us</h6> -->
+            <h2>Tag Name</h2>
+            <p>We provide a platform that facilitates collaboration and communication among programmers to solve their doubts and challenges related to coding.
+              Get involved into top programming discussions taking place all over the globe!</p>
+            <div class="main-button">
+              <!-- <a href="#">Join Now</a> -->
+            </div>
+          </div>
+        </div>
       </div>
-      
-</body>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright © 2036 BugSearch. All rights reserved. &nbsp;&nbsp;&nbsp; Design: BugSearch</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/isotope.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/owl-carousel.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/counter.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
+  <!-- <script src="assets/js/our.jss"></script> -->
+
+  </body>
 </html>
