@@ -137,6 +137,7 @@ class User(UserMixin):
     
     @staticmethod
     def update_profile(user,about,profile_image_url,tags):
+        user_id=user.user_id
         my_db=get_db_connection()
         cursor=my_db.cursor(dictionary=True)
         query="UPDATE Users SET about=%s,profile_image_url=%s WHERE user_id=%s"
@@ -145,6 +146,11 @@ class User(UserMixin):
         my_db.commit()
         cursor.execute("SELECT * FROM Users WHERE user_id=%s",(user.user_id,))
         row=cursor.fetchone()
+        for tag_name in tags:
+            query="INSERT INTO Usertags (tag_name,user_id) VALUES(%s,%s)"
+            cursor.execute(query,(tag_name,user_id))
+            my_db.commit()
+            cursor.fetchall()
         my_db.close()
         return User(**row)
     
@@ -154,10 +160,12 @@ class User(UserMixin):
         query = "SELECT follower_id FROM Followertags WHERE following_id = %s ORDER BY creation_date DESC LIMIT 10"
         cursor=my_db.cursor(dictionary=True)
         cursor.execute(query,(user_id,))
-        followers_id=cursor.fetchall()
+        # followers_id=cursor.fetchall()
+        fol_id=cursor.fetchall()
         u_list=[]
         my_db.close()
-        for f_id in followers_id:
+        print(fol_id)
+        for f_id in fol_id:
             u_list.append(User.get(f_id['follower_id']))
         return u_list
 
@@ -167,11 +175,12 @@ class User(UserMixin):
         query = "SELECT following_id FROM Followertags WHERE follower_id = %s ORDER BY creation_date DESC LIMIT 10"
         cursor=my_db.cursor(dictionary=True)
         cursor.execute(query,(user_id,))
-        followers_id=cursor.fetchall()
+        foll_id=cursor.fetchall()
         u_list=[]
+        print(foll_id)
         my_db.close()
-        for f_id in followers_id:
-            u_list.append(User.get(f_id['follower_id']))
+        for f_id in foll_id:
+            u_list.append(User.get(f_id['following_id']))
         return u_list
     
     @staticmethod
@@ -509,17 +518,13 @@ class Question_Comment():
         return None
     
     @staticmethod
-    def find_qcom_by_ques_id(question_id):
+    def find_qcomment_by_id(question_id):
         my_db=get_db_connection()
         cursor=my_db.cursor(dictionary=True)
-        query="SELECT * FROM Question_comments WHERE question_id=%s ORDER BY CREATION_DATE DESC"
+        query="SELECT body FROM Question_comments WHERE question_id=%s ORDER BY CREATION_DATE DESC"
         cursor.execute(query,(question_id,))
         row =cursor.fetchall()
-        qc_l=[]
-        my_db.close()
-        for qc in row:
-            return qc_l.append(Question_Comment(**qc))
-        return qc_l
+        return row
   
 
 class Answer_Comment():
@@ -539,6 +544,9 @@ class Answer_Comment():
             cursor.execute(query,(body,user_id,answer_id))
             acomment=cursor.fetchone()
             my_db.commit()
+            query="UPDATE Answers  SET comment_count=comment_count+1 WHERE answer_id=%s"
+            cursor.execute(query,(answer_id,))
+            my_db.commit() 
             my_db.close()
             if acomment is None:
                 return "failed", 400
@@ -546,15 +554,13 @@ class Answer_Comment():
                 return "Successfully posted",200
 
     @staticmethod
-    def find_acomment_by_id(answer_comment_id):
+    def find_acomment_by_id(answer_id):
         my_db=get_db_connection()
         cursor=my_db.cursor(dictionary=True)
-        query="SELECT * FROM Answer_comments (answer_comment_id) VALUES(%s)"
-        cursor.execute(query,(answer_comment_id,))
-        row =cursor.fetchone()
-        if row is None:
-            return Answer_Comment(**row)
-        return None 
+        query="SELECT body FROM Answer_comments WHERE answer_id =%s ORDER BY creation_date DESC"
+        cursor.execute(query,(answer_id,))
+        row =cursor.fetchall()
+        return row
         
 class Tag():
     def __init__(self,**kwargs):
@@ -610,6 +616,20 @@ class QVote:
         self.user_id=kwargs.get('user_id')
 
     @staticmethod
+    def Qmanagereputation(question_id,points):
+        print(question_id,points,'managing reputation points')
+        my_db=get_db_connection()
+        cursor=my_db.cursor(dictionary=True)
+        query="SELECT user_id FROM Questions WHERE question_id=%s" 
+        cursor.execute(query,(question_id,))
+        user_id=cursor.fetchone()['user_id']
+        query="UPDATE Users SET reputation=reputation+%s WHERE user_id=%s"
+        cursor.execute(query,(points,user_id,))
+        my_db.commit()
+        my_db.close()
+        print('implemented points')
+
+    @staticmethod
     def Qfindvote(user_id,question_id):
         my_db=get_db_connection()
         cursor=my_db.cursor(dictionary=True)
@@ -639,6 +659,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=5)
                 return 'upvote'
             else:
                 query="INSERT INTO Question_votes (user_id,question_id,vote_type) values(%s,%s,%s)"
@@ -648,6 +669,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=-2)
                 return 'downvote'
         elif (vote['vote_type']=='neutral'):
             if(voting=='up'):
@@ -658,6 +680,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=5)
                 return 'upvote'
             else:
                 query = "UPDATE Question_votes SET vote_type = %s WHERE user_id = %s AND question_id = %s"
@@ -667,6 +690,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=-2)
                 return 'downvote'
 
         elif (vote['vote_type']=='upvote'):
@@ -678,6 +702,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=-5)
                 return 'neutral'
             else:
                 query = "UPDATE Question_votes SET vote_type = %s WHERE user_id = %s AND question_id = %s"
@@ -690,6 +715,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=-7)
                 return 'downvote'
         else:
             if(voting=='down'):
@@ -700,6 +726,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qmanagereputation(question_id,points=2)
                 return 'neutral'
             else:
                 query = "UPDATE Question_votes SET vote_type = %s WHERE user_id = %s AND question_id = %s"
@@ -712,6 +739,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
+                QVote.Qreputation(question_id,points=7)
                 return 'upvote'
 
 
@@ -720,6 +748,20 @@ class AVote:
         self.vote_type=kwargs.get('vote_type')
         self.answer_id=kwargs.get('answer_id')
         self.user_id=kwargs.get('user_id')
+
+    @staticmethod
+    def Amanagereputation(answer_id,points):
+        print(answer_id,points,'managing reputation points')
+        my_db=get_db_connection()
+        cursor=my_db.cursor(dictionary=True)
+        query="SELECT user_id FROM Answers WHERE answer_id=%s" 
+        cursor.execute(query,(answer_id,))
+        user_id=cursor.fetchone()['user_id']
+        query="UPDATE Users SET reputation=reputation+%s WHERE user_id=%s"
+        cursor.execute(query,(points,user_id,))
+        my_db.commit()
+        my_db.close()
+        print('implemented points')
 
     @staticmethod
     def Afindvote(user_id,answer_id):
@@ -752,6 +794,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=5)
                 return 'upvote'
             else:
                 query="INSERT INTO Answer_votes (user_id,answer_id,vote_type) values(%s,%s,%s)"
@@ -761,6 +804,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=-2)
                 return 'downvote'
         elif (vote['vote_type']=='neutral'):
             if(voting=='up'):
@@ -771,6 +815,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=5)
                 return 'upvote'
             else:
                 query = "UPDATE Answer_votes SET vote_type = %s WHERE user_id = %s AND answer_id = %s"
@@ -780,6 +825,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=-2)
                 return 'downvote'
 
         elif (vote['vote_type']=='upvote'):
@@ -791,6 +837,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=-5)
                 return 'neutral'
             else:
                 query = "UPDATE Answer_votes SET vote_type = %s WHERE user_id = %s AND answer_id = %s"
@@ -803,6 +850,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=-7)
                 return 'downvote'
         else:
             if(voting=='down'):
@@ -813,6 +861,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=2)
                 return 'neutral'
             else:
                 query = "UPDATE Answer_votes SET vote_type = %s WHERE user_id = %s AND answer_id = %s"
@@ -825,6 +874,7 @@ class AVote:
                 cursor.execute(query, (answer_id,))
                 my_db.commit()
                 my_db.close()
+                AVote.Amanagereputation(answer_id,points=7)
                 return 'upvote'
         
     
@@ -1113,7 +1163,7 @@ def post_answer_comment(question_id,answer_id):
             id=current_user.user_id
             Answer_Comment.post_acomment(user_id=id,body=body,answer_id=answer_id)
             return redirect(url_for('find_question',question_id=question_id)) 
-    return render_template('post_acomment.html',answer_id=answer_id)
+    return render_template('post_acomment.html',answer_id=answer_id,question_id=question_id)
     
 @login_required
 @newapp.route('/users/questions/<int:question_id>/comments',methods=['GET','POST'])
@@ -1310,7 +1360,7 @@ def Qloadvote():
         data = request.args
         question_id = data.get('question_id')
         user_id = current_user.user_id
-        print(question_id)
+        print(question_id,user_id)
         votetype=QVote.Qfindvote(user_id=user_id, question_id=question_id)
         bookmark=QBookmark.Qfindbookmark(user_id=user_id,question_id=question_id)
         print()
@@ -1333,6 +1383,7 @@ def updatevote():
         user_id = current_user.user_id
         vote_type=data.get('vote_type')
         post_type=data.get('post_type')
+        print(post_type,vote_type)
         print("raja kumar in updatevote",post_id,vote_type,post_type)
         if(post_type=='question'):
             print("i am hwer in question")
@@ -1369,6 +1420,66 @@ def udpatebookmark():
             B=QBookmark.Qupdatebookmark(user_id=user_id,question_id=post_id)
         print(B)
         return jsonify({"bookmark":B['bookmark']})
+
+@login_required
+@newapp.route('/getcomments',methods=['GET','POST'])
+def getcomments():
+    if request.method=='POST':
+        data=request.get_json()
+        post_id=data.get('post_id')
+        post_type=data.get('post_type')
+        print("i am here what are you doing")
+        print(post_id,post_type)
+        if(post_type=='answer'):
+            ac_list=Answer_Comment.find_acomment_by_id(answer_id=post_id)
+            print(ac_list)
+            print('answers')
+            return jsonify(ac_list)
+        else: 
+            qc_list=Question_Comment.find_qcomment_by_id(question_id=post_id)
+            print(qc_list)
+            print('questions')
+            return jsonify(qc_list) 
+    else:
+        return jsonify({'body':'my name is raja'})
+
+@login_required
+@newapp.route('/updatefollow',methods=['GET','POST'])
+def udpatefollow():
+    if request.method=='POST':
+        data=request.get_json()
+        id=data.get('user_id')
+        user_id=current_user.user_id
+        # db interaciton
+        my_db=get_db_connection()
+        cursor=my_db.cursor(dictionary=True)
+        query='SELECT * FROM Followertags WHERE follower_id = %s AND following_id=%s ' 
+        cursor.execute(query,(user_id,id))
+        row=cursor.fetchone()
+        if(row is None):
+            query="INSERT INTO Followertags (follower_id,following_id) VALUES(%s,%s)"
+            cursor.execute(query,(user_id,id))
+            my_db.commit()
+            query='UPDATE Users SET nfollowing=nfollowing+1 WHERE user_id=%s'
+            cursor.execute(query,(user_id,))
+            my_db.commit()
+            query='UPDATE Users SET nfollowers=nfollowers+1 WHERE user_id=%s'
+            cursor.execute(query,(id,))
+            my_db.commit()
+            my_db.close()
+            return jsonify({'fstatus':'follow'})
+        else:
+            query="DELETE FROM Followertags WHERE follower_id=%s AND following_id=%s"
+            cursor.execute(query,(user_id,id))
+            my_db.commit()
+            query='UPDATE Users SET nfollowing=nfollowing-1 WHERE user_id=%s'
+            cursor.execute(query,(user_id,))
+            my_db.commit()
+            query='UPDATE Users SET nfollowers=nfollowers-1 WHERE user_id=%s'
+            cursor.execute(query,(id,))
+            my_db.commit()
+            my_db.close()
+            return jsonify({'fstatus':'unfollow'})
 
 if __name__=="__main__":
     newapp.run(debug=True)
