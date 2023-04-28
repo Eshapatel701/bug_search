@@ -739,7 +739,7 @@ class QVote:
                 cursor.execute(query, (question_id,))
                 my_db.commit()
                 my_db.close()
-                QVote.Qreputation(question_id,points=7)
+                QVote.Qmanagereputation(question_id,points=7)
                 return 'upvote'
 
 
