@@ -68,7 +68,7 @@ class User(UserMixin):
         self.username = kwargs.get('username')
         self.creation_date = kwargs.get('creation_date')
         self.profile_image_url = kwargs.get('profile_image_url')
-        self.reputation_points = kwargs.get('reputation_points')
+        self.reputation = kwargs.get('reputation')
         self.about = kwargs.get('about')
         # self.badge = kwargs.get('badge')
         self.nfollowing = kwargs.get('nfollowing')
