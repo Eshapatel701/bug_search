@@ -98,6 +98,24 @@
                         <button id="dislike-btnquestion{{question.question_id}}" class="dlb" onclick="updatevote(vote_type='down',post_type='question',post_id='{{question.question_id}}')"><box-icon type='solid' name='down-arrow' style="height:18px; width:18px"></box-icon></button>
                         <button id="bookmarks-btnquestion{{question.question_id}}" onclick="updatebookmark(post_type='question',post_id='{{question.question_id}}')"> <box-icon name='bookmark-star' type='solid' style="height:18px; width:18px" ></box-icon></button>
                     </div>
+                    {% if question.vote_type=='upvote' %}
+                    <script>
+                    const button=document.getElementById('like-btnquestion{{question.question_id}}');
+                        button.style.backgroundColor='#49BBBD';
+                    </script>
+                    {% elif question.vote_type=='downvote' %}
+                        <script>
+                    const button=document.getElementById('dislike-btnquestion{{question.question_id}}');
+                    button.style.backgroundColor='#49BBBD';
+                        </script> 
+                    {% endif %}
+
+                    {% if question.bookmark=='yes' %}
+                    <script>
+                        const bookmark= document.getElementById("bookmarks-btnquestion{{question.question_id}}");
+                        bookmark.style.backgroundColor='#49BBBD';
+                    </script>
+                    {% endif %}
                 </div>
                 <div class="col-lg-11">
                     <h4>{{question.body}}</h4>
@@ -140,6 +158,20 @@
                             <button id="bookmarks-btnanswer{{answer.answer_id}}" onclick="updatebookmark(post_type='answer',post_id='{{answer.answer_id}}')"> <box-icon name='bookmark-star' type='solid' style="height:18px; width:18px" ></box-icon></button>
                         </div>
                     </div>
+                    {% if answer.vote_type=='upvote' %}
+                        <script>
+                        document.getElementById('like-btnanswer{{answer.answer_id}}').style.backgroundColor = '#49BBBD';
+                        </script>
+                        {% elif answer.vote_type=='downvote' %}
+                        <script>
+                        document.getElementById('dislike-btnanswer{{answer.answer_id}}').style.backgroundColor = '#49BBBD';
+                        </script> 
+                        {% endif %}
+                        {% if answer.bookmark=='yes' %}
+                        <script>
+                        document.getElementById('bookmarks-btnanswer{{answer.answer_id}}').style.backgroundColor = '#49BBBD';
+                        </script>
+                        {% endif %}
                 </div>
                 <div class="col-lg-11">
                     <h5 class="search_ans">{{answer.body}}</h5>
