@@ -90,19 +90,19 @@
             
             <div class="main-content sel">
               <img src="{{url_for('static',filename=user.profile_image_url)}}" alt="">
+              <span class="category">{{user.reputation}} Reputation points</span>
               <button type="button" class="btn btn-primary btn-sm btn-search" style="border:4px solid #49BBBD; "  id="user{{user.user_id}}" onclick="updatefollow(user_id='{{user.user_id}}')">Follow</button>
-              <a href="{{url_for('view_user',user_id=user.user_id)}}"><h4>{{user.username}}</h4></a>
+              <a href="{{url_for('view_user',username=user.username)}}"><h4>{{user.username}}</h4></a>
               <ul class="social-icons">
               </ul>
             </div>
-               {% if user.fstatus=='unfollow' %}
+            {% if user.fstatus=='unfollow' %}
             <script>
               document.getElementById("user{{user.user_id}}").style.backgroundColor='#49BBBD';
               document.getElementById("user{{user.user_id}}").innerHTML='Unfollow';
             </script>
 
             {% endif %}
-          
           </div>
         </div>
         {% endfor %} 
@@ -143,7 +143,7 @@
               }
               else
               {
-                  followbutton.innerHTML='follow'
+                  followbutton.innerHTML='Follow'
                   followbutton.style.backgroundColor='';
               }
           }

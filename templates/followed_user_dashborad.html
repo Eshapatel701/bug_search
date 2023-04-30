@@ -12,18 +12,18 @@
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;600;700&display=swap"
         rel="stylesheet">
-        <link rel="icon" type="image/x-icon" href="{{ url_for ('static',filename='assets/images/logo.png') }}" alt="image">
-        <title>BugSearch</title>
-    
-        <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    
-     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-scholar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/our_c.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/side.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for ('static',filename='assets/images/logo.png') }}" alt="image">
+    <title>BugSearch</title>
+
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/templatemo-scholar.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/our_c.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/side.css') }}">
 
 </head>
 </head>
@@ -35,12 +35,12 @@
     </div>
     <ul class="list-unstyled components navbar-nav mr-auto">
         <p>{{current_user.username}}</p>
-        <li> <a href="{{url_for('dashboard')}}" class="dis-inl" style="background-color: #49BBBD" ><i class="fa-solid fa-user trending-user-circle dis-inl mar" style="color:black"></i>User Profile</a></li>
+        <li> <a href="{{url_for('dashboard')}}" class="dis-inl" ><i class="fa-solid fa-user trending-user-circle dis-inl mar" style="color:black"></i>User Profile</a></li>
         <li> <a href="{{url_for('user_home')}}" class="dis-inl"><i class="fa-solid fa-house followers-page-identification-cardd dis-inl mar" style="color:black"></i>User Home</a> </li>
         <li> <a href="{{url_for('complete_your_profile')}}" class="dis-inl"><i class="fa-solid fa-pen-to-square followers-page-vector2 dis-inl mar" style="color:black"></i>Edit Profile</a> </li>
         <li> <a href="{{url_for('followers')}}" class="dis-inl"><i class="fa-solid fa-user-group followers-page-users dis-inl mar" style="color:black"></i>Followers</a> </li>
         <li> <a href="{{url_for('following')}}" class="dis-inl"><i class="fa-solid fa-user-group followers-page-users dis-inl mar" style="color:black"></i>Following</a> </li>
-        
+        <li> <a href="{{url_for('badges')}}" class="dis-inl"><i class="fa-solid fa-award followers-page-vector1 dis-inl mar" style="color:black"></i>Badges</a> </li>
         <li> <a href="{{url_for('trending')}}" class="dis-inl"><i class="fa-solid fa-globe recommendations-globe-stand dis-inl mar" style="color:black"></i>Trending</a> </li>
         <li> <a href="{{url_for('recommendations')}}" class="dis-inl"><i class="fa-solid fa-wand-magic-sparkles trending-magic-wand dis-inl mar" style="color:black"></i>Recommendations</a> </li>
         <li> <a href="{{url_for('all_users')}}" class="dis-inl"><i class="fa fa-users followers-page-users-threed1 dis-inl mar" style="color:black"></i>All Users</a> </li>
@@ -56,12 +56,12 @@
              <a href="{{url_for('homepage')}}" class="logo">
                 <h1 id="title">BugSearch</h1>
             </a>
-            <div class="search-input">
-              <form id="search" action="{{url_for('search_login')}}" method="POST">
-                  <input type="text" placeholder="Type Something" id='searchText' name="keyword" value="{{request.form['keyword']}}"/>
-                  <i type="submit" class="fa fa-search"></i>
-              </form>
-          </div>
+             <div class="search-input">
+                <form id="search" action="#">
+                  <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                  <i class="fa fa-search"></i>
+                </form>
+              </div>
             <ul class="nav"> 
               <li class="scroll-to-section"><a href="{{url_for('user_home')}}">Home</a></li>
               <li class="scroll-to-section"><a href="{{url_for('dashboard')}}">{{current_user.username}}</a></li>
@@ -89,7 +89,7 @@
             <div class="row">
               <div class="col-lg-3">
                 <div class="image">
-                  <img class="pro_img" src="{{url_for('static',filename=current_user.profile_image_url)}}" alt="">
+                  <img class="pro_img" src="{{ url_for ('static',filename='assets/images/member-03.jpg') }}" alt="">
                 </div>
               </div>
               <div class="col-lg-9">
@@ -99,7 +99,7 @@
                     <!-- <h4 class="profile">Name : {{current_user.username}}</h4> -->
                     <h4 class="profile">About : {{current_user.about}}</h4>
                     <h4 class="profile">Email_id :{{current_user.email_id}} </h4>
-                    
+                    <h4 class="profile">Badge : {{current_user.badge}}</h4>
                     <!-- <h4 class="profile">passcode :{{current_user.passcode}} </h4>
                     <h4 class="profile">user_id :{{current_user.user_id}} </h4> -->
                     <h4 class="profile">Joined :{{current_user.creation_date}} </h4>
@@ -112,13 +112,8 @@
         </div>
       </div>       
 </div>
-
-
-
-
-
-
-<h2 class="probag set-badge">Statistics</h2>
+<!-- <h1 class="pro_badges">badges</h1> -->
+        <h2 class="probag set-badge">Statistics</h2>
 <div class="services section pro" id="services">
   <div class="container" style="margin-top:41px">
     <div class="row">
@@ -141,9 +136,9 @@
           <!-- <div class="icon">
             <img src="assets/images/service-02.png" alt="short courses">
           </div> -->
-           <div class="main-content_pro pro-dashboard publicity">
+          <div class="main-content_pro pro-dashboard publicity">
             <h4 class="pro_h4">Reputation Points</h4>
-            <h5>{{current_user.reputation}}</h5>
+            <h5>{{current_user.reputation_points}}</h5>
         
             <!-- <div class="main-button">
               <a href="#">Read More</a>
@@ -151,31 +146,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-lg-4 col-md-6 hz">
-        <div class="service-item">
-           <div class="main-content_pro pro-dashboard publicity">
-            <h4 class="pro_h4">Badge</h4>
-            <h5 id="badgeid">{{current_user.reputation}}</h5>
-            <script>
-              if ('{{current_user.reputation}}'<100)
-              {
-                  document.getElementById('badgeid').innerHTML='Bronze';
-                  document.getElementById('badgeid').style.backgroundColor='#cd7f32';  
-              }
-              else if('{{current_user.reputation}}'<300)
-              {
-                document.getElementById('badgeid').innerHTML='Silver'; 
-                document.getElementById('badgeid').style.backgroundColor='#c0c0c0';  
-              }
-              else
-              {
-                document.getElementById('badgeid').innerHTML='Gold';
-                document.getElementById('badgeid').style.backgroundColor='#ffd700';  
-              }
-            </script>
-          </div>
-        </div>
-      </div> -->
    
       <div class="col-lg-4 col-md-6 hz">
         <div class="service-item">
@@ -190,45 +160,66 @@
             </div> -->
           </div>
         </div>
-          
-          
       </div>
     </div>
   </div>
 </div>
+
+
 <h2 class="probag set-badge">Badges</h2>
 <div class="team section" id="team_pro">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 hz">
-          <div class="team-member">
-            <div class="main-content modify3 bbadge">
-              <img src="{{ url_for('static',filename='assets/images/badge3.png' )}}" alt="" class="badge-img">
-              <h4>Gold Badge</h4>
-              <ul class="social-icons">
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 hz">
+        <div class="team-member">
+          <div class="main-content modify3 bbadge">
+            <img src="{{ url_for ('static',filename='assets/images/badge3.png') }}" alt="" class="badge-img">
+<!--             <span class="category">Badges</span> -->
+            <h4>Gold Badge</h4>
+            <ul class="social-icons">
+<!--               <li><a href="#"><i class="fab fa-facebook"></i></a></li> -->
+<!--               <li><a href="#"><i class="fab fa-twitter"></i></a></li> -->
+<!--               <li><a href="#"><i class="fab fa-linkedin"></i></a></li> -->
+            </ul>
           </div>
-        </div> 
+        </div>
+      </div> 
+      <div class="col-lg-4 col-md-6 hz">
+        <div class="team-member">
+          <div class="main-content modify3 bbadge">
+            <img src="{{ url_for ('static',filename='assets/images/badge1.png')}}" alt="" class="badge-img">
+<!--             <span class="category">Badges</span> -->
+            <h4>Silver Badge</h4>
+            <ul class="social-icons">
+<!--               <li><a href="#"><i class="fab fa-facebook"></i></a></li> -->
+<!--               <li><a href="#"><i class="fab fa-twitter"></i></a></li> -->
+<!--               <li><a href="#"><i class="fab fa-linkedin"></i></a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 hz">
+        <div class="team-member">
+          <div class="main-content modify3 bbadge">
+            <img src="{{ url_for ('static', filename='assets/images/badge2.png') }}" alt="" class="badge-img">
+<!--             <span class="category">Badges</span> -->
+            <h4>Bronze Badge</h4>
+            <ul class="social-icons">
+<!--               <li><a href="#"><i class="fab fa-facebook"></i></a></li> -->
+<!--               <li><a href="#"><i class="fab fa-twitter"></i></a></li> -->
+<!--               <li><a href="#"><i class="fab fa-linkedin"></i></a></li> -->
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
 </div> 
-<h2 class="probag set-badge">Interests</h2>
-<br><br><br><br>
-<br>
-<div style="margin-left: 152px;">
-{% for tag in tags%} 
-<button type="button" class="btn btn-primary btn-sm btn-search">{{ tag[0] }}</button>
-{% endfor %}
-</div>
-<br><br>
 
-
-<!-- <button type="button" class="btn btn-secondary btn-lg btn_pro search-button">Follow</button> -->
+<button type="button" class="btn btn-secondary btn-lg btn_pro search-button">Follow</button>
 
 
 </body>
-
-
 
 
 
@@ -243,6 +234,7 @@
 <script src="{{ url_for('static', filename='assets/js/counter.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/custom.js') }}"></script>
 <script src="{{ url_for('static', filename='assets/js/our.js') }}"></script>
+
 
 </body>
         </html>
