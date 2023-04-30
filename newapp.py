@@ -390,7 +390,7 @@ class Question():
     @staticmethod
     def find_trending_ques():
         my_db=get_db_connection()
-        query = "SELECT * FROM Questions ORDER BY creation_date DESC LIMIT 10"
+        query = "SELECT * FROM Questions ORDER BY creation_date DESC"
         cursor=my_db.cursor(dictionary=True)
         cursor.execute(query)
         questions=cursor.fetchall()
@@ -404,7 +404,7 @@ class Question():
     @staticmethod
     def find_recommend_ques():
         my_db=get_db_connection()
-        query = "SELECT * FROM Questions ORDER BY upvotes DESC LIMIT 10"
+        query = "SELECT * FROM Questions ORDER BY upvotes DESC"
         cursor=my_db.cursor(dictionary=True)
         cursor.execute(query)
         questions=cursor.fetchall()
@@ -417,7 +417,7 @@ class Question():
     @staticmethod 
     def find_recent_ques():
         my_db=get_db_connection()
-        query = "SELECT * FROM Questions ORDER BY creation_date DESC LIMIT 10"
+        query = "SELECT * FROM Questions ORDER BY creation_date DESC"
         cursor=my_db.cursor(dictionary=True)
         cursor.execute(query)
         questions=cursor.fetchall()
@@ -980,7 +980,7 @@ class QBookmark:
         # print(user_id)
         my_db=get_db_connection()
         cursor=my_db.cursor(dictionary=True)
-        query = "SELECT question_id FROM Question_bookmarks WHERE user_id = %s ORDER BY creation_date DESC LIMIT 10"
+        query = "SELECT question_id FROM Question_bookmarks WHERE user_id = %s ORDER BY creation_date DESC"
         cursor.execute(query,(user_id,))
         l_qid=cursor.fetchall()
         # print("checing for bookmarks")
@@ -1047,7 +1047,7 @@ class ABookmark:
         # print(user_id)
         my_db=get_db_connection()
         cursor=my_db.cursor(dictionary=True)
-        query = "SELECT answer_id FROM Answer_bookmarks WHERE user_id = %s ORDER BY creation_date DESC LIMIT 10"
+        query = "SELECT answer_id FROM Answer_bookmarks WHERE user_id = %s ORDER BY creation_date DESC "
         cursor.execute(query,(user_id,))
         l_qid=cursor.fetchall()
         # print("checing for aanswes bookmarks")
