@@ -567,6 +567,7 @@ Header Style
   .background-header .main-nav .nav,
   .header-area .main-nav .nav {
     background-color: rgba(73, 187, 189, 0.10000000149011612);
+    backdrop-filter: blur(2px);
   }
   .background-header .main-nav .nav li a,
   .header-area .main-nav .nav li a {
@@ -575,12 +576,14 @@ Header Style
     font-weight: 400;
     color: #1e1e1e;
     background-color: rgba(73, 187, 189, 0.10000000149011612);
-     border-radius: 0px 0px 25px 25px;
+    backdrop-filter: blur(2px); 
+    border-radius: 0px 0px 25px 25px;
   }
   .background-header .main-nav .nav li,
   .header-area .main-nav .nav li {
     border-top: 1px solid #ddd;
     background-color: rgba(73, 187, 189, 0.10000000149011612);
+    backdrop-filter: blur(2px);
     height: 50px;
     border-radius: 0px 0px 25px 25px;
   }
@@ -673,6 +676,7 @@ Banner Style
 .main-banner {
   background-image: url(../images/new_banner.jpeg);
   background-color: #49bbbd59;
+  backdrop-filter: blur(2px);
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -839,6 +843,7 @@ Services Style
   border-radius: 25px;
   padding: 80px 30px 50px 30px;
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   margin-bottom: 30px;
   margin-right: 80px;
   transition: all .4s;
@@ -878,6 +883,7 @@ About Style
   width: 84%;
   height: 100%;
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   content: '';
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
@@ -970,6 +976,7 @@ Courses Style
 
 .event_filter {
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   border-radius: 50px;
   padding: 15px 40px;
   list-style: none;
@@ -1192,6 +1199,7 @@ Team Style
   border-radius: 25px;
   padding: 140px 30px 40px 30px;
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   text-align: center;
 }
 
@@ -1252,6 +1260,7 @@ Testimonials Style
   width: 65%;
   height: 100%;
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   content: '';
   border-top-left-radius: 500px;
   border-bottom-left-radius: 500px;
@@ -1350,6 +1359,7 @@ Events Style
 
 .events .item {
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   border-radius: 25px;
   position: relative;
   padding: 40px;
@@ -1386,7 +1396,7 @@ Events Style
   font-size: 14px;
   text-transform: uppercase;
   color: #49BBBD;
-  background-color: #fff;
+  background-color: #ffffeb;
   padding: 8px 20px;
   border-radius: 25px;
   font-weight: 500;
@@ -1451,6 +1461,7 @@ Contact Style
   width: 65%;
   height: 100%;
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   content: '';
   border-top-right-radius: 500px;
   border-bottom-right-radius: 500px;
@@ -1896,6 +1907,7 @@ body {
   }
   .contact-us .special-offer {
     background-color: rgba(73, 187, 189, 0.10000000149011612);
+    backdrop-filter: blur(2px);
     margin-bottom: 60px;
     padding: 34px 30px 34px 100px;
     width: 100%;
@@ -1941,7 +1953,8 @@ section#courses {
 }
 .events .item5{
   background-color: rgba(73, 187, 189, 0.10000000149011612);
-    border-radius: 25px;
+  backdrop-filter: blur(2px);  
+  border-radius: 25px;
     position: relative;
     padding: 40px;
     margin-bottom: 45px;
@@ -1988,6 +2001,7 @@ section#courses {
   border-radius: 25px;
   padding: 80px 30px 50px 30px;
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   margin-bottom: 30px;
   margin-right: -10px;
   transition: all .4s;
@@ -2015,6 +2029,7 @@ section#courses {
 }
 .btn-search{
   background-color: rgba(73, 187, 189, 0.10000000149011612);
+  backdrop-filter: blur(2px);
   color: black;
   border-color: #49BBBD;
 }

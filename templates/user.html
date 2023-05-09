@@ -66,7 +66,7 @@
               <li class="scroll-to-section"><a href="{{url_for('user_home')}}">Home</a></li>
               <li class="scroll-to-section"><a href="{{url_for('dashboard')}}">{{current_user.username}}</a></li>
               <li class="scroll-to-section"><a href="{{url_for('logout')}}">Logout</a></li>
-              <li class="scroll-to-section"><a href="{{url_for('help_with_login')}}">Help</a></li>
+              <li class="scroll-to-section"><a href="{{url_for('help')}}">Help</a></li>
             </ul>   
               <a class='menu-trigger'>
                   <span>Menu</span>
@@ -89,7 +89,7 @@
             <div class="row">
               <div class="col-lg-3">
                 <div class="image">
-                  <img class="pro_img" src="{{url_for('static',filename=current_user.profile_image_url)}}" alt="">
+                  <img class="pro_img" src="{{url_for('static',filename=user.profile_image_url)}}" alt="">
                 </div>
               </div>
               <div class="col-lg-9">
@@ -98,7 +98,7 @@
 
 
                     <h4 class="profile">About : {{user.about}}</h4>
-                    <h4 class="profile">Email_id :{{user.email_id}} </h4>
+                    <h4 class="profile">Username :{{user.username}} </h4>
                     
 
                     <h4 class="profile">Joined :{{user.creation_date}} </h4>
@@ -128,7 +128,7 @@
           </div> -->
           <div class="main-content_pro pro-dashboard publicity">
             <h4 class="pro_h4">Followers</h4>
-            <h5>{{user.nfollowers}}</h5>
+            <h5>{{follower}}</h5>
             <!-- <div class="main-button">
               <a href="#">Read More</a>
             </div> -->
@@ -183,7 +183,7 @@
           </div> -->
           <div class="main-content_pro pro-dashboard publicity">
             <h4 class="pro_h4">Followings</h4>
-            <h5>{{user.nfollowing}}</h5>    
+            <h5>{{following}}</h5>    
             <!-- <div class="main-button">
               <a href="#">Read More</a>
             </div> -->
@@ -203,10 +203,10 @@
           <div class="team-member">
             <div class="main-content modify3 bbadge">
               {% if user.reputation <100 %}
-              <img src="{{ url_for('static',filename='assets/images/badge1.png' )}}" alt="" class="badge-img">
+              <img src="{{ url_for('static',filename='assets/images/badge2.png' )}}" alt="" class="badge-img">
               <h4>Bronze Badge</h4>
               {% elif  user.reputation <300 %}
-              <img src="{{ url_for('static',filename='assets/images/badge2.png' )}}" alt="" class="badge-img">
+              <img src="{{ url_for('static',filename='assets/images/badge1.png' )}}" alt="" class="badge-img">
               <h4>Silver Badge</h4>
               {% else %}
               <img src="{{ url_for('static',filename='assets/images/badge3.png' )}}" alt="" class="badge-img">
