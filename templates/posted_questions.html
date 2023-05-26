@@ -54,20 +54,20 @@
         <header class="header-area header-sticky background-header fixed-topp">
             <nav class="main-nav navcolor navbar-dark">
              <button type="button" id="sidebarCollapse" class="btn btn-info info"> <i class="fa fa-align-justify"></i> </button> 
-             <a href="{{url_for('homepage')}}" class="logo">
+             <a href="{{url_for('user_home')}}" class="logo">
                 <h1 id="title">BugSearch</h1>
             </a>
-             <div class="search-input">
-                <form id="search" action="#">
-                  <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-                  <i class="fa fa-search"></i>
-                </form>
-              </div>
+            <div class="search-input">
+              <form id="search" action="{{url_for('search_login')}}" method="POST">
+                  <input type="text" placeholder="Type Something" id='searchText' name="keyword" value="{{request.form['keyword']}}"/>
+                  <i type="submit" class="fa fa-search"></i>
+              </form>
+          </div>
             <ul class="nav"> 
               <li class="scroll-to-section"><a href="{{url_for('user_home')}}">Home</a></li>
               <li class="scroll-to-section"><a href="{{url_for('dashboard')}}">{{current_user.username}}</a></li>
               <li class="scroll-to-section"><a href="{{url_for('logout')}}">Logout</a></li>
-              <li class="scroll-to-section"><a href="{{url_for('help_with_login')}}">Help</a></li>
+              <li class="scroll-to-section"><a href="{{url_for('help')}}">Help</a></li>
             </ul>   
               <a class='menu-trigger'>
                   <span>Menu</span>
@@ -94,9 +94,7 @@
                   <li>
                     <h4>{{q.title}}</h4>
                     <br>
-                    <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.score}} Scores<!--</button>--></span>
-                    <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.upvotes}} Upvotes<!--</button>--></span>
-                      <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.downvotes}} Downvotes<!--</button>--></span>
+                    <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.score}} Votes<!--</button>--></span>
                     <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.answer_count}} Answers<!--/button--></span>
                     <span class="category dis-inl"><!--<button class="category btn btn-primary btn-sm btn-search">-->{{q.comment_count}} Comments<!--/button--></span>
                     

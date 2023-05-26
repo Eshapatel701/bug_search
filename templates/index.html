@@ -35,7 +35,7 @@ https://templatemo.com/tm-586-scholar
 -->
   </head>
 
-<body>
+<body style="background-image: url('../static/assets/images/bg.png');">
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -63,7 +63,7 @@ https://templatemo.com/tm-586-scholar
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Serach Start ***** -->
                     <div class="search-input">
-                      <form id="search" action="{{url_for('search_login')}}" method="POST">
+                      <form id="search" action="{{url_for('search_without_login')}}" method="POST">
                           <input type="text" placeholder="Type Something" id='searchText' name="keyword" value="{{request.form['keyword']}}"/>
                           <i type="submit" class="fa fa-search"></i>
                       </form>
@@ -152,7 +152,7 @@ https://templatemo.com/tm-586-scholar
       <div class="row">
         <div class="col-lg-4 col-md-6">
           <div class="service-item">
-            <div class="icon">
+            <div class="icon"style="z-index: 100;">
               <img src="{{ url_for ('static',filename='assets/images/service-01.png' ) }}" alt="online degrees">
             </div>
             <div class="main-content sel1">
@@ -166,8 +166,8 @@ https://templatemo.com/tm-586-scholar
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="service-item">
-            <div class="icon">
-              <img src="{{ url_for ('static',filename='assets/images/service-02.png') }}" alt="short courses">
+            <div class="icon"style="z-index: 100;">
+              <img src="{{ url_for ('static',filename='assets/images/service-02.png') }}" alt="short courses" >
             </div>
             <div class="main-content sel1">
               <h4>Vote Answers</h4>
@@ -180,7 +180,7 @@ https://templatemo.com/tm-586-scholar
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="service-item">
-            <div class="icon">
+            <div class="icon"style="z-index: 100;">
               <img src="{{ url_for ('static',filename='assets/images/service-03.png') }}" alt="web experts">
             </div>
             <div class="main-content sel1">
@@ -204,7 +204,7 @@ https://templatemo.com/tm-586-scholar
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Who we are?
+                  Who are we?
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -228,7 +228,7 @@ https://templatemo.com/tm-586-scholar
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Why BugSearch is the best?
+                  Why is BugSearch the best?
                 </button>
               </h2>
               <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
@@ -255,10 +255,10 @@ https://templatemo.com/tm-586-scholar
           <div class="section-heading_home">
             <!-- <h6>About Us</h6> -->
             <h2>Code. Connect. Collaborate.</h2>
-            <p class="ccc">We provide a platform that facilitates collaboration and communication among programmers to solve their doubts and challenges related to coding.
+            <p>We provide a platform that facilitates collaboration and communication among programmers to solve their doubts and challenges related to coding.
               Get involved into top programming discussions taking place all over the globe!</p>
             <div class="main-button">
-              <a href="{{url_for('signup')}}" class="join">Join Now</a>
+              <a href="{{url_for('signup')}}">Join Now</a>
             </div>
           </div>
         </div>

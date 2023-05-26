@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa
+    background-image: url('../images/bg.png');
 }
 
 p {
@@ -51,6 +51,7 @@ a:focus {
     min-width: 250px;
     max-width: 250px;
     background: rgba(73, 187, 189, 0.10000000149011612);
+    backdrop-filter: blur(2px);
     color: #fff;
     transition: all 0.3s;
     height: 100vh;
@@ -63,6 +64,7 @@ a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     background: rgba(73, 187, 189, 0.10000000149011612);
+    backdrop-filter: blur(2px);
 }
 
 #sidebar ul.components {
