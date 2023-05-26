@@ -72,9 +72,12 @@
                     </form>
                 </div>
                 <ul class="nav">
+
                     <li class="scroll-to-section"><a href="{{url_for('user_home')}}">Home</a></li>
                     <li class="scroll-to-section"><a href="{{url_for('dashboard')}}">{{current_user.username}}</a></li>
                     <li class="scroll-to-section"><a href="{{url_for('logout')}}">Logout</a></li>
+
+
                     <li class="scroll-to-section"><a href="{{url_for('help')}}">Help</a></li>
                 </ul>
                 <a class='menu-trigger'>
